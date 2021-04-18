@@ -1,0 +1,1 @@
+docker run -p 8502:8501 --name=fafa -v /home/fbordjah/ipssi/les-projets-de-test-pour-says-projet/image-classification-web-app/saved_model/:/models/horse-vs-human/1 -e MODEL_NAME=horse-vs-human tensorflow/serving
