@@ -60,6 +60,7 @@ def index():
             # Check if the extension of the file is correct (png, jpg)
             # Save the image in the static folder before passing it to the model
             # Copying the images in the folder will allow us to show the image along with the prediction
+
             if uploaded_file.filename[-3:] in ['jpg', 'png']:
                 image_path = os.path.join(OUTPUT_DIR, generate_filename())
                 print(
@@ -73,6 +74,10 @@ def index():
                     'size': SIZE
                 }
                 return render_template('show.html', result=result)
+            else:
+                erreur = "Veuillez deposer une image au format PNG ou JPG"
+                return render_template('index.html', erreur=erreur)
+
     return render_template('index.html')
 
 
