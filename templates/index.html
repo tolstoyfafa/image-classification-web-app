@@ -1,17 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="card center">
-    <h2>Upload File</h2>
+
+<div class="row">
+  <div class="card text-center col-md-6 offset-md-3">
+    <h2>Dépose ton Image</h2>
     <hr>
-    <form class="form-inline" action="{{ url_for('index') }}" method="post"
-    enctype="multipart/form-data">
+    <form action="{{ url_for('index') }}" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <input type="file" name="file" class="btn">
       </div>
-      <div class="form-group">
-        <input type="submit" value="Upload" class="btn">
-      </div>
+
+      <input type="submit" value="Humain Ou Cheval ?" class="btn btn-primary">
+
     </form>
   </div>
+</div>
+
 {% endblock %}

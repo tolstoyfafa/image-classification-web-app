@@ -20,7 +20,8 @@ def generate_filename():
 
 
 def get_prediction(image_path):
-    image = tf.keras.preprocessing.image.load_img(image_path, target_size=(SIZE, SIZE))
+    image = tf.keras.preprocessing.image.load_img(
+        image_path, target_size=(SIZE, SIZE))
     image = tf.keras.preprocessing.image.img_to_array(image)
     image = tf.keras.applications.mobilenet_v2.preprocess_input(image)
     image = np.expand_dims(image, axis=0)
@@ -28,6 +29,7 @@ def get_prediction(image_path):
     data = json.dumps({'instances': image.tolist()})
     response = requests.post(MODEL_URI, data=data.encode())
     result = json.loads(response.text)
+    print(result)
     prediction = result['predictions'][0]
     class_name = CLASSES[int(prediction[0] > 0.5)]
     return class_name
@@ -60,7 +62,8 @@ def index():
             # Copying the images in the folder will allow us to show the image along with the prediction
             if uploaded_file.filename[-3:] in ['jpg', 'png']:
                 image_path = os.path.join(OUTPUT_DIR, generate_filename())
-                print("#################################################################################")
+                print(
+                    "#################################################################################")
                 print(image_path)
                 uploaded_file.save(image_path)
                 class_name = get_prediction(image_path)

@@ -1,13 +1,18 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
+<div class="card text-center">
+  {% set resultat = "Humain" %}
+  {% if result.class_name == "Horse"%}
+  {% set resultat = "Cheval" %}
+  {% endif %}
+  <h2>C'est un : {{ resultat }}</h2>
+  <hr />
 
-{% block content %}
-  <div class="card center">
-    <h2>Predicted Class: {{ result.class_name }}</h2>
-    <hr>
-
-    <div>
-      <img src="{{ result.image_path }}" class="img-rounded" width="400" height="auto">
+  <div class="row">
+    <div class="card text-center col-md-6 offset-md-3">
+      <img src="{{ result.image_path }}" class="rounded" />
     </div>
-    <a href="{{ url_for('index') }}" class="btn">Back</a>
   </div>
+
+  <a href="{{ url_for('index') }}" class="btn">Retour</a>
+</div>
 {% endblock %}
